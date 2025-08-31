@@ -7,14 +7,12 @@ import os
 
 
 load_dotenv(override=True)
-api_key = os.environ['OPENAI_API_KEY']
-
 
 class AgentState(TypedDict):
     messages: List[HumanMessage]
 
 
-llm = ChatOpenAI(model='gpt-4o')
+llm = ChatOpenAI(model='gpt-4o-mini')
 
 def process_node(state: AgentState) -> AgentState:
     response = llm.invoke(state['messages'])
@@ -32,3 +30,4 @@ user_input = input("Enter: ")
 
 while user_input.lower() != "exit":
     agent.invoke({"messages": [HumanMessage(content=user_input)]})
+    user_input = input("Enter: ")
