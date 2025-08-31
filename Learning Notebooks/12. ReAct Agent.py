@@ -45,6 +45,7 @@ def model_call(state: AgentState) -> AgentState:
     system_prompt = SystemMessage(
         content="You are my AI assistant. Please answer my question to the best of your ability"
         )
+    print(f"In Model Call function: {state['messages']} \n\n")
     response = model.invoke([system_prompt] + state["messages"])
     return {"messages": [response]} # This is a result of using add_messages
 
@@ -53,12 +54,14 @@ def should_continue(state: AgentState) -> AgentState:
     messages = state["messages"]
     last_message = messages[-1]
 
+    print(f"Messages from should continue: {messages}")
+    print(f"Last message: {last_message}")
+
     if not last_message.tool_calls:
         return "end"
     else:
         return "continue"
     
-
 
 graph = StateGraph(AgentState)
 graph.add_node("our_agent", model_call)
@@ -92,6 +95,6 @@ def print_stream(stream):
             message.pretty_print()
 
 inputs = {"messages": [("user", "Add 40 + 12.")]}
-
+app.invoke(inputs)
 # inputs = {"messages": [("user", "Add 40 + 12 and then multiply the result by 6. Also tell me a joke please.")]}
-print_stream(app.stream(inputs, stream_mode="values"))
+# print_stream(app.stream(inputs, stream_mode="values"))
