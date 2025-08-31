@@ -2,4 +2,4 @@
 .env
 
 # Ignore text files
-.txt
+*.txt
