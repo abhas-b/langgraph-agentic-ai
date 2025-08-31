@@ -1,0 +1,6 @@
+Your Conversation Log: 
+You: Hi My Name is Bing
+AI: Hi Bing! How can I assist you today?
+You: I'm good. Whats my name again?
+AI: Your name is Bing. How can I help you today, Bing?
+End of Conversation
