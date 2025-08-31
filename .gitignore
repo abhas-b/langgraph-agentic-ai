@@ -1,5 +1,2 @@
 # Ignore environment variable files
 .env
-
-# Ignore text files
-*.txt
